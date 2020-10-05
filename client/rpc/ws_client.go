@@ -3,6 +3,8 @@ package rpc
 import (
 	"context"
 	"encoding/json"
+	"github.com/tendermint/tendermint/libs/bytes"
+	rpctypes "github.com/tendermint/tendermint/rpc/jsonrpc/types"
 	"net"
 	"net/http"
 	"sync/atomic"
@@ -16,11 +18,10 @@ import (
 	"github.com/pkg/errors"
 
 	"github.com/tendermint/go-amino"
-	cmn "github.com/tendermint/tendermint/libs/common"
 	"github.com/tendermint/tendermint/libs/log"
+	srv "github.com/tendermint/tendermint/libs/service"
 	"github.com/tendermint/tendermint/rpc/client"
 	ctypes "github.com/tendermint/tendermint/rpc/core/types"
-	"github.com/tendermint/tendermint/rpc/lib/types"
 	"github.com/tendermint/tendermint/types"
 
 	"github.com/binance-chain/go-sdk/common/uuid"
@@ -45,7 +46,7 @@ const (
 
 /** websocket event stuff here... **/
 type WSEvents struct {
-	cmn.BaseService
+	srv.BaseService
 	cdc      *amino.Codec
 	remote   string
 	endpoint string
@@ -78,7 +79,7 @@ func newWSEvents(cdc *amino.Codec, remote, endpoint string) *WSEvents {
 		reconnect:            make(chan *WSClient),
 	}
 
-	wsEvents.BaseService = *cmn.NewBaseService(nil, "WSEvents", wsEvents)
+	wsEvents.BaseService = *srv.NewBaseService(nil, "WSEvents", wsEvents)
 	return wsEvents
 }
 
@@ -297,7 +298,7 @@ func (w *WSEvents) ABCIInfo() (*ctypes.ResultABCIInfo, error) {
 	return info, err
 }
 
-func (w *WSEvents) ABCIQueryWithOptions(path string, data cmn.HexBytes, opts client.ABCIQueryOptions) (*ctypes.ResultABCIQuery, error) {
+func (w *WSEvents) ABCIQueryWithOptions(path string, data bytes.HexBytes, opts client.ABCIQueryOptions) (*ctypes.ResultABCIQuery, error) {
 	abciQuery := new(ctypes.ResultABCIQuery)
 	wsClient := w.getWsClient()
 	err := w.SimpleCall(func(ctx context.Context, id rpctypes.JSONRPCStringID) error {
@@ -559,7 +560,7 @@ func (w *WSEvents) eventListener() {
 // WSClient is a WebSocket client. The methods of WSClient are safe for use by
 // multiple goroutines.
 type WSClient struct {
-	cmn.BaseService
+	srv.BaseService
 
 	conn *websocket.Conn
 	cdc  *amino.Codec
@@ -617,7 +618,7 @@ func NewWSClient(remoteAddr, endpoint string, responsesCh chan<- rpctypes.RPCRes
 		send:        make(chan rpctypes.RPCRequest),
 	}
 	c.dialing.Store(true)
-	c.BaseService = *cmn.NewBaseService(nil, "WSClient", c)
+	c.BaseService = *srv.NewBaseService(nil, "WSClient", c)
 	for _, option := range options {
 		option(c)
 	}
@@ -873,7 +874,7 @@ func (c *WSClient) ABCIInfo(ctx context.Context, id rpctypes.JSONRPCStringID) er
 	return c.Call(ctx, "abci_info", id, map[string]interface{}{})
 }
 
-func (c *WSClient) ABCIQueryWithOptions(ctx context.Context, id rpctypes.JSONRPCStringID, path string, data cmn.HexBytes, opts client.ABCIQueryOptions) error {
+func (c *WSClient) ABCIQueryWithOptions(ctx context.Context, id rpctypes.JSONRPCStringID, path string, data bytes.HexBytes, opts client.ABCIQueryOptions) error {
 	return c.Call(ctx, "abci_query", id, map[string]interface{}{"path": path, "data": data, "height": opts.Height, "prove": opts.Prove})
 }
 
