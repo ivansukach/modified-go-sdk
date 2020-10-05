@@ -1,4 +1,4 @@
-module github.com/binance-chain/go-sdk
+module github.com/ivansukach/modified-go-sdk
 
 require (
 	github.com/binance-chain/ledger-cosmos-go v0.9.9-binance.1

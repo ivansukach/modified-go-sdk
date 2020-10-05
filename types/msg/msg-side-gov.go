@@ -8,7 +8,7 @@ import (
 
 	"github.com/tendermint/go-amino"
 
-	"github.com/binance-chain/go-sdk/common/types"
+	"github.com/ivansukach/modified-go-sdk/common/types"
 )
 
 const (

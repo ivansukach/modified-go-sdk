@@ -24,8 +24,8 @@ import (
 	ctypes "github.com/tendermint/tendermint/rpc/core/types"
 	"github.com/tendermint/tendermint/types"
 
-	"github.com/binance-chain/go-sdk/common/uuid"
-	"github.com/binance-chain/go-sdk/types/tx"
+	"github.com/ivansukach/modified-go-sdk/common/uuid"
+	"github.com/ivansukach/modified-go-sdk/types/tx"
 )
 
 const (

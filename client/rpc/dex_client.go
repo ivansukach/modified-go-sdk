@@ -7,13 +7,13 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/binance-chain/go-sdk/common"
-	"github.com/binance-chain/go-sdk/common/types"
-	sdk "github.com/binance-chain/go-sdk/common/types"
-	"github.com/binance-chain/go-sdk/keys"
-	gtypes "github.com/binance-chain/go-sdk/types"
-	"github.com/binance-chain/go-sdk/types/msg"
-	"github.com/binance-chain/go-sdk/types/tx"
+	"github.com/ivansukach/modified-go-sdk/common"
+	"github.com/ivansukach/modified-go-sdk/common/types"
+	sdk "github.com/ivansukach/modified-go-sdk/common/types"
+	"github.com/ivansukach/modified-go-sdk/keys"
+	gtypes "github.com/ivansukach/modified-go-sdk/types"
+	"github.com/ivansukach/modified-go-sdk/types/msg"
+	"github.com/ivansukach/modified-go-sdk/types/tx"
 	core_types "github.com/tendermint/tendermint/rpc/core/types"
 )
 
@@ -84,7 +84,7 @@ type DexClient interface {
 	Claim(chainId sdk.IbcChainID, sequence uint64, payload []byte, syncType SyncType, options ...tx.Option) (*core_types.ResultBroadcastTx, error)
 	GetProphecy(chainId sdk.IbcChainID, sequence int64) (*msg.Prophecy, error)
 	GetCurrentOracleSequence(chainId sdk.IbcChainID) (int64, error)
-	
+
 	SideChainVote(proposalID int64, option msg.VoteOption, sideChainId string, syncType SyncType, options ...tx.Option) (*core_types.ResultBroadcastTx, error)
 	SideChainDeposit(proposalID int64, amount types.Coins, sideChainId string, syncType SyncType, options ...tx.Option) (*core_types.ResultBroadcastTx, error)
 	SideChainSubmitSCParamsProposal(title string, scParam msg.SCChangeParams, initialDeposit types.Coins, votingPeriod time.Duration, sideChainId string, syncType SyncType, options ...tx.Option) (*core_types.ResultBroadcastTx, error)

@@ -7,11 +7,11 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/binance-chain/go-sdk/common/types"
+	"github.com/ivansukach/modified-go-sdk/common/types"
 
 	"github.com/pkg/errors"
 
-	"github.com/binance-chain/go-sdk/common"
+	"github.com/ivansukach/modified-go-sdk/common"
 )
 
 // constants
@@ -225,7 +225,7 @@ func (dbProphecy DBProphecy) DeserializeFromDB() (Prophecy, error) {
 		return Prophecy{}, err
 	}
 
-	var claimValidators= map[string][]types.ValAddress{}
+	var claimValidators = map[string][]types.ValAddress{}
 	for addr, claim := range validatorClaims {
 		valAddr, err := types.ValAddressFromBech32(addr)
 		if err != nil {

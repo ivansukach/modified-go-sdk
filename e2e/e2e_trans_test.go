@@ -2,7 +2,7 @@ package e2e
 
 import (
 	"fmt"
-	"github.com/binance-chain/go-sdk/client/rpc"
+	"github.com/ivansukach/modified-go-sdk/client/rpc"
 	"github.com/tendermint/tendermint/crypto"
 	"strings"
 	"testing"
@@ -12,13 +12,13 @@ import (
 
 	"github.com/tendermint/tendermint/types/time"
 
-	sdk "github.com/binance-chain/go-sdk/client"
-	"github.com/binance-chain/go-sdk/client/transaction"
-	"github.com/binance-chain/go-sdk/common"
-	ctypes "github.com/binance-chain/go-sdk/common/types"
-	"github.com/binance-chain/go-sdk/keys"
-	"github.com/binance-chain/go-sdk/types/msg"
-	txtype "github.com/binance-chain/go-sdk/types/tx"
+	sdk "github.com/ivansukach/modified-go-sdk/client"
+	"github.com/ivansukach/modified-go-sdk/client/transaction"
+	"github.com/ivansukach/modified-go-sdk/common"
+	ctypes "github.com/ivansukach/modified-go-sdk/common/types"
+	"github.com/ivansukach/modified-go-sdk/keys"
+	"github.com/ivansukach/modified-go-sdk/types/msg"
+	txtype "github.com/ivansukach/modified-go-sdk/types/tx"
 )
 
 // After bnbchain integration_test.sh has runned
@@ -46,7 +46,7 @@ func TestTransProcess(t *testing.T) {
 	addFlags, err := client.AddAccountFlags([]ctypes.FlagOption{ctypes.TransferMemoCheckerFlag}, true)
 	assert.NoError(t, err)
 	fmt.Printf("Set account flags: %v \n", addFlags)
-	accn,_:=client.GetAccount(client.GetKeyManager().GetAddr().String())
+	accn, _ := client.GetAccount(client.GetKeyManager().GetAddr().String())
 	fmt.Println(accn)
 	setFlags, err := client.SetAccountFlags(0, true)
 	assert.NoError(t, err)

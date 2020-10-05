@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/binance-chain/go-sdk/common/types"
+	"github.com/ivansukach/modified-go-sdk/common/types"
 )
 
 // DexListMsg def

@@ -9,9 +9,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/binance-chain/go-sdk/common/types"
-	"github.com/binance-chain/go-sdk/types/msg"
-	"github.com/binance-chain/go-sdk/types/tx"
+	"github.com/ivansukach/modified-go-sdk/common/types"
+	"github.com/ivansukach/modified-go-sdk/types/msg"
+	"github.com/ivansukach/modified-go-sdk/types/tx"
 	"github.com/tendermint/go-amino"
 	coretypes "github.com/tendermint/tendermint/rpc/core/types"
 )

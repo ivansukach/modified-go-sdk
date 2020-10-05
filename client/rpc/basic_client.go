@@ -5,9 +5,9 @@ import (
 	"github.com/tendermint/tendermint/crypto/merkle"
 	"time"
 
-	ntypes "github.com/binance-chain/go-sdk/common/types"
-	"github.com/binance-chain/go-sdk/keys"
-	"github.com/binance-chain/go-sdk/types/tx"
+	ntypes "github.com/ivansukach/modified-go-sdk/common/types"
+	"github.com/ivansukach/modified-go-sdk/keys"
+	"github.com/ivansukach/modified-go-sdk/types/tx"
 	"github.com/pkg/errors"
 	"github.com/tendermint/tendermint/libs/bytes"
 	srv "github.com/tendermint/tendermint/libs/service"

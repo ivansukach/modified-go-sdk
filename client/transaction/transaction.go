@@ -5,12 +5,12 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/binance-chain/go-sdk/client/basic"
-	"github.com/binance-chain/go-sdk/client/query"
-	"github.com/binance-chain/go-sdk/common/types"
-	"github.com/binance-chain/go-sdk/keys"
-	"github.com/binance-chain/go-sdk/types/msg"
-	"github.com/binance-chain/go-sdk/types/tx"
+	"github.com/ivansukach/modified-go-sdk/client/basic"
+	"github.com/ivansukach/modified-go-sdk/client/query"
+	"github.com/ivansukach/modified-go-sdk/common/types"
+	"github.com/ivansukach/modified-go-sdk/keys"
+	"github.com/ivansukach/modified-go-sdk/types/msg"
+	"github.com/ivansukach/modified-go-sdk/types/tx"
 )
 
 type Option = tx.Option
